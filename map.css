@@ -1,3 +1,5 @@
+
+
 html, body {
   margin: 0;
   padding: 0;
@@ -14,19 +16,6 @@ html, body {
   height: 100vh;
 }
 
-#map {
-  width: 100%;
-  height: 100%;
-}
-
-#map svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
 
 .circle {
   fill: yellow;
@@ -54,6 +43,72 @@ header time{
 header em {
   display: block; 
   color: steelblue; 
+}
+  
+  
+#map {
+    width: 100%;    /* Adjust width to your desired size */
+    height: 100%;   /* Adjust height to your desired size */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for effect */
+    border-radius: 8px; /* Optional: rounded corners */
+
+}
+
+#map svg {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+#map circle {
+    fill: yellow;
+    fill-opacity: 0.6;
+    stroke: white;
+    stroke-width: 1;
+    pointer-events: auto;
+    --color-departures: yellow;
+    --color-arrivals: blue;
+    --color: color-mix(
+    in oklch,
+    var(--color-departures) calc(100% * var(--departure-ratio)),
+    var(--color-arrivals)
+    );
+    fill: var(--color);
+}
+
+#legend {
+  display: flex;
+  gap: 1em;
+  margin-top: 15px;
+}
+
+#legend div{
+  display: flex; 
+  gap: 0.5em;
+  align-items: center;
+}
+
+#legend div::before {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  
+}
+
+.dep::before {
+  background-color: yellow;
+}
+
+.bal::before {
+  background-color: color-mix(in oklch, yellow 50%, blue);
+}
+
+.arr::before {
+  background-color: blue;
 }
 
 
